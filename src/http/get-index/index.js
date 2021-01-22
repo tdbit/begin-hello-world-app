@@ -29,14 +29,23 @@ let body = `
 </html>
 `
 
+let arc = require("@architect/functions")
+
 exports.handler = async function http(req) {
+  let user = { body: req.body }
+
+  await arc.events.publish({
+    name: 'user-test-patience',
+    payload: { user }
+  })
+
   return {
     headers: {
       'content-type': 'text/html; charset=utf8',
       'cache-control': 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0'
     },
     statusCode: 200,
-    body: JSON.stringify( { message: "hello" } )
+    body: JSON.stringify( { message: "called it" } )
   }
 }
 
