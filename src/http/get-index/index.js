@@ -36,7 +36,7 @@ exports.handler = async function http(req) {
       'cache-control': 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0'
     },
     statusCode: 200,
-    body
+    body: JSON.stringify( { message: "hello" } )
   }
 }
 
